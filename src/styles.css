@@ -1,1 +1,163 @@
-/* You can add global styles to this file, and also import other style files */
+/* Colores base */
+:root {
+  --primary: #0d6efd;
+  --secondary: #20c997;
+  --light: #f8f9fa;
+  --dark: #212529;
+}
+
+/* Reset básico */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--light);
+  color: var(--dark);
+}
+
+/* Contenedor general */
+.container {
+  max-width: 900px;
+  margin: 30px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+
+/* Navegación */
+nav {
+  background-color: var(--primary);
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+
+/* Títulos */
+h1, h2 {
+  color: var(--primary);
+  margin-top: 0;
+}
+
+/* Formularios */
+form label {
+  font-weight: 600;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+form textarea {
+  resize: none;
+  height: 90px;
+}
+
+/* Botones */
+button {
+  background-color: var(--secondary);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* Listado */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  background: var(--light);
+  padding: 15px;
+  margin-bottom: 10px;
+  border-left: 5px solid var(--primary);
+  border-radius: 6px;
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  
+}
+.mensaje {
+  margin-top: 15px;
+  font-weight: 600;
+  animation: fadeIn 0.4s ease;
+}
+
+.hero-video,
+.hero-video video,
+.hero-video .overlay {
+  pointer-events: none;
+}
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 60px;
+  height: 60px;
+  background-color: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  z-index: 9999;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.whatsapp-float img {
+  width: 32px;
+  height: 32px;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+}

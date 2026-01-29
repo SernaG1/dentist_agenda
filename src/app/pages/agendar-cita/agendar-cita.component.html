@@ -1,0 +1,32 @@
+<div class="container fade-in">
+  <h2>Agendar cita</h2>
+
+  <form (ngSubmit)="guardarCita()">
+    <label>Nombre del paciente</label>
+    <input type="text" [(ngModel)]="cita.nombre" name="nombre">
+
+    <br><br>
+
+    <label>Fecha</label>
+    <input type="date" [(ngModel)]="cita.fecha" name="fecha">
+
+    <br><br>
+
+    <label>Hora</label>
+    <input type="time" [(ngModel)]="cita.hora" name="hora">
+
+    <br><br>
+
+    <label>Motivo de la cita</label>
+    <textarea [(ngModel)]="cita.motivo" name="motivo"></textarea>
+
+    <br><br>
+
+    <button type="submit">
+  {{ editando ? 'Actualizar cita' : 'Guardar cita' }}
+</button>
+
+
+  <p class="mensaje">{{ mensaje }}</p>
+
+
