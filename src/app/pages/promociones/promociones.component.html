@@ -1,0 +1,20 @@
+<div class="container">
+  <h2 class="titulo">Promociones del mes</h2>
+
+  <div class="grid-promos">
+    <div class="card-promo" *ngFor="let promo of promociones">
+      <img [src]="promo.imagen" [alt]="promo.titulo">
+
+      <h3>{{ promo.titulo }}</h3>
+      <p class="precio">{{ promo.precio }}</p>
+
+      <a
+        class="btn"
+        href="https://wa.me/573148708677"
+        target="_blank">
+        Agendar por WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+

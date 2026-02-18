@@ -1,0 +1,25 @@
+<div class="container">
+<h2>Promociones Especiales</h2>
+
+
+<div class="grid">
+<div class="card" *ngFor="let promo of promociones">
+<img [src]="promo.imagen" [alt]="promo.titulo" />
+
+
+<div class="contenido">
+<h3>{{ promo.titulo }}</h3>
+<p class="precio">{{ promo.precio }}</p>
+
+
+<a
+class="btn-whatsapp"
+href="https://wa.me/573000000000?text=Hola%20quiero%20información%20de%20la%20promoción"
+target="_blank"
+>
+Consultar
+</a>
+</div>
+</div>
+</div>
+</div>

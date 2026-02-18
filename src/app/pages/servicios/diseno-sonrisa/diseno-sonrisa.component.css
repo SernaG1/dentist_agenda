@@ -1,0 +1,75 @@
+.servicio-hero {
+  position: relative;
+  height: 60vh;
+  overflow: hidden;
+}
+
+.servicio-hero video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.servicio-hero .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+}
+
+.hero-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+}
+
+.servicio-info {
+  max-width: 900px;
+  margin: 4rem auto;
+  padding: 0 1.5rem;
+}
+
+.servicio-info h2 {
+  color: #0f766e;
+}
+
+.servicio-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.servicio-info li {
+  margin: 0.5rem 0;
+}
+
+.galeria {
+  padding: 3rem 2rem;
+  background: #f8f9fa;
+}
+
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.galeria-grid img {
+  width: 100%;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.galeria-grid img:hover {
+  transform: scale(1.05);
+}
+

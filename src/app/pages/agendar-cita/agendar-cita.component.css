@@ -1,0 +1,21 @@
+/* ===== CONTENER tamaño del datepicker ===== */
+:host ::ng-deep .mat-datepicker-content {
+  transform: scale(1.99);
+  transform-origin: top center;
+}
+
+/* ===== Ajustar tamaño del calendario ===== */
+:host ::ng-deep .mat-calendar {
+  width: 360px !important;
+  height: 400px !important;
+}
+
+/* ===== Tamaño de números del calendario ===== */
+:host ::ng-deep .mat-calendar-body-cell-content {
+  font-size: 12px !important;
+}
+
+/* ===== Header del calendario ===== */
+:host ::ng-deep .mat-calendar-header {
+  padding: 8px 8px !important;
+}
