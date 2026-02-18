@@ -1,0 +1,65 @@
+<div class="container fade-in">
+  <h2>Agendar cita</h2>
+
+  <form (ngSubmit)="guardarCita()" #formCita="ngForm">
+
+    <!-- NOMBRE -->
+    <label>Nombre del paciente</label>
+    <input
+      type="text"
+      [(ngModel)]="cita.nombre"
+      name="nombre"
+      required
+      placeholder="Ej: Juan Pérez"
+    />
+
+    <br><br>
+
+    <!-- FECHA CON CALENDARIO BONITO -->
+    <label>Fecha</label>
+
+<div class="calendario-box">
+  <mat-calendar
+    [(selected)]="cita.fecha"
+    [minDate]="minFecha">
+  </mat-calendar>
+</div>
+
+
+    <!-- HORA -->
+    <label>Hora</label>
+    <input
+      type="time"
+      [(ngModel)]="cita.hora"
+      name="hora"
+      required
+    />
+
+    <br><br>
+
+    <!-- MOTIVO -->
+    <label>Motivo de la cita</label>
+    <textarea
+      [(ngModel)]="cita.motivo"
+      name="motivo"
+      required
+      placeholder="Describe el motivo de la consulta"
+    ></textarea>
+
+    <br><br>
+
+    <!-- BOTÓN -->
+    <button type="submit" [disabled]="formCita.invalid">
+      {{ editando ? 'Actualizar cita' : 'Guardar cita' }}
+    </button>
+
+  </form>
+
+  <!-- MENSAJE -->
+  <p class="mensaje" *ngIf="mensaje">
+    {{ mensaje }}
+  </p>
+</div>
+
+
+
