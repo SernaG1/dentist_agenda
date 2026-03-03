@@ -1,100 +1,105 @@
-# DentistAgenda
+# Dentist Agenda - Sistema de Gestión de Citas Odontológicas
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.19.
+Sistema completo full-stack para la gestión de citas en consultorios dentales.
 
-## Development server
+## 🏗️ Arquitectura del Proyecto
 
-To start a local development server, run:
+Este proyecto sigue una arquitectura **MVC modular** con:
 
+- **Backend**: Express.js 5.x + Sequelize ORM + MySQL
+- **Frontend**: Angular 19 + TypeScript + Angular Material
+- **Base de Datos**: MySQL 8.0+
+
+## 🚀 Inicio Rápido
+
+### Requisitos
+- Node.js 18+
+- npm o pnpm
+- MySQL 8.0+
+
+### Backend
 ```bash
-ng serve
+cd Backend
+npm install
+npm run dev          # Desarrollo
+npm start            # Producción
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Servidor en `http://localhost:3000`
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
+### Frontend
 ```bash
-ng generate component component-name
+cd Frontend
+npm install
+npm start            # Desarrollo
+npm run build        # Producción
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+App en `http://localhost:4200`
 
-```bash
-ng generate --help
-```
+## 📚 Endpoints Principales API
 
-## Building
+### Pacientes
+- `POST /api/pacientes` - Crear
+- `GET /api/pacientes` - Listar
+- `GET /api/pacientes/:id` - Obtener
+- `PUT /api/pacientes/:id` - Actualizar
+- `DELETE /api/pacientes/:id` - Desactivar
+- `PATCH /api/pacientes/:id/restaurar` - Restaurar
 
-To build the project run:
+### Dentistas, Servicios y Citas
+Endpoints similares a Pacientes con rutas `/api/dentistas`, `/api/servicios`, `/api/citas`
 
-```bash
-ng build
-```
+## 🔐 Características
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+✅ Validación de datos en servidor con express-validator
+✅ Manejo centralizado de errores
+✅ Relaciones entre entidades (Sequelize)
+✅ Soft delete (desactivación lógica)
+✅ Timestamps automáticos
+✅ CORS habilitado
+✅ Arquietctura MVC modular
 
-## Running unit tests
+## 📖 Documentación
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Ver [ARCHITECTURE.md](./ARCHITECTURE.md) para:
+- Estructura detallada de carpetas
+- Controllers, Middlewares, Models
+- Validadores por entidad
+- Flujo de solicitudes
 
-```bash
-ng test
-```
+## 📋 Historias de Usuario Implementadas
 
-## Running end-to-end tests
+### 1. Agendamiento de Cita
 
-For end-to-end (e2e) testing, run:
+En la sección de citas del sistema:
 
-```bash
-ng e2e
-```
+- El sistema muestra un formulario de agendamiento
+- Todos los campos (nombre, fecha, hora y motivo) son obligatorios
+- Al guardar la cita, el sistema muestra un mensaje de confirmación
+- La cita queda visible en "Ver citas"
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### 2. Visualización de Servicios Odontológicos
 
-## Additional Resources
+Página principal muestra servicios: diseño de sonrisa, blanqueamiento y ortodoncia.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Tarjetas informativas con imagen y descripción
+- Al hacer clic, navega a página con más información y video
+- Diseño claro, atractivo y responsive
 
+### 3. Contacto rápido por WhatsApp
 
-# User History
+Usuario puede contactar a la clínica directamente.
 
-Agendamiento de cita
+- Botón de WhatsApp visible en todo momento
+- Abre conversación directa con mensaje predefinido
+- No interfiere con la navegación
 
-Como paciente de la clínica odontológica,
-quiero agendar una cita desde la página web,
-para reservar una fecha y hora de atención sin necesidad de llamar.
+## 👥 Equipo
 
-1 - Criterios de aceptación:
+Proyecto de línea de énfasis - Semestre 7, 2026
 
-- El sistema debe mostrar un formulario de agendamiento.
-- Todos los campos (nombre, fecha, hora y motivo) deben ser obligatorios.
-- Al guardar la cita, el sistema debe mostrar un mensaje de confirmación.
-- La cita debe quedar visible en la sección “Ver citas”.
+## 📄 Licencia
 
-2- Visualización de servicios odontológicos
-
-Como visitante de la página web,
-quiero ver los servicios odontológicos disponibles (diseño de sonrisa, blanqueamiento y ortodoncia),
-para conocer los tratamientos que ofrece la clínica antes de agendar una cita.
-
-Criterios de aceptación:
-- La página principal debe mostrar tarjetas informativas de cada servicio.
-- Cada tarjeta debe incluir imagen, descripción y un enlace.
-- Al hacer clic en un servicio, el usuario debe navegar a una página con más información y un video explicativo.
-- El diseño debe ser claro, atractivo y responsive.
-
-3- Contacto rápido por WhatsApp
-
-Como usuario interesado en los servicios,
-quiero contactar rápidamente a la clínica mediante un botón de WhatsApp,
-para resolver dudas sin salir del sitio web.
-
-Criterios de aceptación:
-
-- El botón de WhatsApp debe estar visible en todo momento.
-- El botón debe abrir una conversación directa con la clínica.
-- El mensaje inicial debe estar predefinido.
+ISC
 - El botón no debe interferir con la navegación del sitio.

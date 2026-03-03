@@ -3,10 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-  "start": "node app.js",
-  "dev": "nodemon app.js",
-  "migrate": "npx sequelize-cli db:migrate"
-},
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SernaG1/dentist_agenda.git"
@@ -23,7 +21,6 @@
     "cors": "^2.8.6",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
-    "express-validator": "^7.0.0",
     "jsonwebtoken": "^9.0.3",
     "mysql2": "^3.16.3",
     "sequelize": "^6.37.7"

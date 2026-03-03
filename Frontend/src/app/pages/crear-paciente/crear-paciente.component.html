@@ -1,0 +1,89 @@
+<div class="crear-container">
+
+  <!-- ================= FORMULARIO IZQUIERDO ================= -->
+  <div class="formulario-box">
+    <h2>Crear Paciente</h2>
+
+    <form (ngSubmit)="guardarPaciente()" #formPaciente="ngForm">
+
+      <!-- NOMBRE -->
+      <label>Nombre completo</label>
+      <input
+        type="text"
+        name="nombre"
+        [(ngModel)]="paciente.nombre"
+        required
+        maxlength="100"
+        placeholder="Ingrese el nombre del paciente"
+      />
+
+      <!-- APELLIDO -->
+      <label>Apellido</label>
+      <input
+        type="text"
+        name="apellido"
+        [(ngModel)]="paciente.apellido"
+        required
+        maxlength="100"
+        placeholder="Ingrese el apellido del paciente"
+      />
+
+      <!-- DIRECCIÓN -->
+      <label>Dirección</label>
+      <input
+        type="text"
+        name="direccion"
+        [(ngModel)]="paciente.direccion"
+        maxlength="255"
+        placeholder="Dirección del paciente"
+      />
+
+
+      <!-- TELEFONO -->
+      <label>Teléfono</label>
+      <input
+        type="tel"
+        name="telefono"
+        [(ngModel)]="paciente.telefono"
+        maxlength="20"
+        placeholder="Número de contacto"
+      />
+
+      <!-- CORREO -->
+      <label>Correo electrónico</label>
+      <input
+        type="email"
+        name="email"
+        [(ngModel)]="paciente.email"
+        maxlength="150"
+        placeholder="correo@ejemplo.com"
+      />
+
+      <!-- OBSERVACIONES -->
+      <label>Observaciones</label>
+      <textarea
+        name="observaciones"
+        [(ngModel)]="paciente.observaciones"
+        placeholder="Notas adicionales del paciente"
+      ></textarea>
+
+      <!-- BOTÓN GUARDAR -->
+      <div class="guardar-container">
+        <button
+          type="submit"
+          class="btn-guardar"
+          [disabled]="formPaciente.invalid"
+        >
+          Guardar Paciente
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+
+
+</div>
+
+
+
