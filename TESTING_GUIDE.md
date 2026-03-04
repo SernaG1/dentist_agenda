@@ -1,8 +1,8 @@
-# 🧪 Guía de Verificación de Funcionalidad - Dentist Agenda
+#  Guía de Verificación de Funcionalidad - Dentist Agenda
 
-## 1️⃣ Verificación Inicial del Proyecto
+## Verificación Inicial del Proyecto
 
-### ✅ Paso 1: Instalar Dependencias
+###  Paso 1: Instalar Dependencias
 
 ```bash
 # Backend
@@ -14,7 +14,7 @@ cd Frontend
 npm install
 ```
 
-### ✅ Paso 2: Configurar Base de Datos
+###  Paso 2: Configurar Base de Datos
 
 **MySQL debe estar corriendo en tu máquina**
 
@@ -36,7 +36,7 @@ docker run --name mysql-dentist \
 DB_PASSWORD=password123
 ```
 
-### ✅ Paso 3: Verificar Archivo `.env`
+###  Paso 3: Verificar Archivo `.env`
 
 Backend `Backend/.env` debe contener:
 ```env
@@ -51,9 +51,9 @@ DB_NAME=dentist_agenda
 
 ---
 
-## 2️⃣ Verificación del Backend
+##  Verificación del Backend
 
-### 🚀 Iniciar el Servidor
+### Iniciar el Servidor
 
 ```bash
 cd Backend
@@ -73,7 +73,7 @@ Ambiente: development
 ✓ Sistema listo para recibir solicitudes
 ```
 
-### 📝 Prueba 1: Health Check
+###  Prueba 1: Health Check
 
 **URL**: `http://localhost:3000/health`
 
@@ -89,7 +89,7 @@ curl http://localhost:3000/health
 }
 ```
 
-### 📝 Prueba 2: Ruta Raíz
+### Prueba 2: Ruta Raíz
 
 **URL**: `http://localhost:3000/`
 
@@ -113,11 +113,11 @@ curl http://localhost:3000/
 
 ---
 
-## 3️⃣ Pruebas CRUD Completas
+##  Pruebas CRUD Completas
 
-### 📦 Recurso: PACIENTES
+###  Recurso: PACIENTES
 
-#### ✅ CREATE: Crear Paciente
+#### CREATE: Crear Paciente
 
 ```bash
 curl -X POST http://localhost:3000/api/pacientes \
@@ -151,7 +151,7 @@ curl -X POST http://localhost:3000/api/pacientes \
 }
 ```
 
-#### ✅ READ: Obtener Todos los Pacientes
+#### READ: Obtener Todos los Pacientes
 
 ```bash
 curl http://localhost:3000/api/pacientes
@@ -170,7 +170,7 @@ curl http://localhost:3000/api/pacientes
 }
 ```
 
-#### ✅ READ: Obtener Paciente por ID
+####  READ: Obtener Paciente por ID
 
 ```bash
 curl http://localhost:3000/api/pacientes/1
@@ -184,7 +184,7 @@ curl http://localhost:3000/api/pacientes/1
 }
 ```
 
-#### ✅ UPDATE: Actualizar Paciente
+####  UPDATE: Actualizar Paciente
 
 ```bash
 curl -X PUT http://localhost:3000/api/pacientes/1 \
@@ -206,7 +206,7 @@ curl -X PUT http://localhost:3000/api/pacientes/1 \
 }
 ```
 
-#### ✅ DELETE: Eliminar Paciente (Soft Delete)
+#### DELETE: Eliminar Paciente (Soft Delete)
 
 ```bash
 curl -X DELETE http://localhost:3000/api/pacientes/1
@@ -219,7 +219,7 @@ curl -X DELETE http://localhost:3000/api/pacientes/1
 # El paciente sigue en BD pero con activo: false
 ```
 
-#### ✅ RESTORE: Restaurar Paciente
+#### RESTORE: Restaurar Paciente
 
 ```bash
 curl -X PATCH http://localhost:3000/api/pacientes/1/restaurar
@@ -237,9 +237,9 @@ curl -X PATCH http://localhost:3000/api/pacientes/1/restaurar
 
 ---
 
-### 📦 Recurso: DENTISTAS
+###  Recurso: DENTISTAS
 
-#### ✅ CREATE: Crear Dentista
+####  CREATE: Crear Dentista
 
 ```bash
 curl -X POST http://localhost:3000/api/dentistas \
@@ -256,7 +256,7 @@ curl -X POST http://localhost:3000/api/dentistas \
 # Respuesta esperada: 201 Created
 ```
 
-#### ✅ READ: Listar Dentistas
+####  READ: Listar Dentistas
 
 ```bash
 curl http://localhost:3000/api/dentistas
@@ -266,9 +266,9 @@ curl http://localhost:3000/api/dentistas
 
 ---
 
-### 📦 Recurso: SERVICIOS
+###  Recurso: SERVICIOS
 
-#### ✅ CREATE: Crear Servicio
+#### CREATE: Crear Servicio
 
 ```bash
 curl -X POST http://localhost:3000/api/servicios \
@@ -285,9 +285,9 @@ curl -X POST http://localhost:3000/api/servicios \
 
 ---
 
-### 📦 Recurso: CITAS
+###  Recurso: CITAS
 
-#### ✅ CREATE: Agendar Cita
+####  CREATE: Agendar Cita
 
 **Requisito**: Debe existir paciente (id=1), dentista (id=1) y servicio (id=1)
 
@@ -319,7 +319,7 @@ curl -X POST http://localhost:3000/api/citas \
 }
 ```
 
-#### ✅ UPDATE: Cambiar Estado de Cita
+####  UPDATE: Cambiar Estado de Cita
 
 ```bash
 curl -X PATCH http://localhost:3000/api/citas/1/estado \
@@ -334,9 +334,9 @@ curl -X PATCH http://localhost:3000/api/citas/1/estado \
 
 ---
 
-## 4️⃣ Pruebas de Validación
+##  Pruebas de Validación
 
-### ❌ Caso: Campo Requerido Faltante
+###  Caso: Campo Requerido Faltante
 
 ```bash
 curl -X POST http://localhost:3000/api/pacientes \
@@ -360,7 +360,7 @@ curl -X POST http://localhost:3000/api/pacientes \
 }
 ```
 
-### ❌ Caso: Email Inválido
+###  Caso: Email Inválido
 
 ```bash
 curl -X POST http://localhost:3000/api/pacientes \
@@ -382,7 +382,7 @@ curl -X POST http://localhost:3000/api/pacientes \
 }
 ```
 
-### ❌ Caso: Formato de Fecha Inválido
+###  Caso: Formato de Fecha Inválido
 
 ```bash
 curl -X POST http://localhost:3000/api/pacientes \
@@ -396,7 +396,7 @@ curl -X POST http://localhost:3000/api/pacientes \
 # Respuesta esperada: 400 Bad Request
 ```
 
-### ❌ Caso: Body Vacío en Update
+###  Caso: Body Vacío en Update
 
 ```bash
 curl -X PUT http://localhost:3000/api/pacientes/1 \
@@ -410,7 +410,7 @@ curl -X PUT http://localhost:3000/api/pacientes/1 \
 }
 ```
 
-### ❌ Caso: ID Inválido
+###  Caso: ID Inválido
 
 ```bash
 curl http://localhost:3000/api/pacientes/abc
@@ -422,7 +422,7 @@ curl http://localhost:3000/api/pacientes/abc
 }
 ```
 
-### ❌ Caso: Recurso No Encontrado
+###  Caso: Recurso No Encontrado
 
 ```bash
 curl http://localhost:3000/api/pacientes/999
@@ -435,9 +435,9 @@ curl http://localhost:3000/api/pacientes/999
 
 ---
 
-## 5️⃣ Verificación del Frontend
+##  Verificación del Frontend
 
-### 🚀 Iniciar Angular
+### Iniciar Angular
 
 ```bash
 cd Frontend
@@ -450,7 +450,7 @@ npm start
 
 ---
 
-## 6️⃣ Herramientas Recomendadas para Pruebas
+##  Herramientas Recomendadas para Pruebas
 
 ### Opción 1: Postman (Interfaz Gráfica)
 
@@ -507,7 +507,7 @@ DELETE http://localhost:3000/api/pacientes/1
 
 ---
 
-## 7️⃣ Verificación de Base de Datos
+##  Verificación de Base de Datos
 
 ### Ver Tablas Creadas
 
@@ -551,7 +551,7 @@ SELECT * FROM Servicios;
 
 ---
 
-## 8️⃣ Checklist de Verificación Final
+## Checklist de Verificación Final
 
 - [ ] Backend instalado y npm install ejecutado
 - [ ] Frontend instalado y npm install ejecutado
@@ -576,33 +576,33 @@ SELECT * FROM Servicios;
 
 ---
 
-## 🆘 Solución de Problemas
+##  Solución de Problemas
 
-### ❌ Error: "Cannot find module 'express'"
+### Error: "Cannot find module 'express'"
 
 ```bash
 cd Backend
 npm install
 ```
 
-### ❌ Error: "connect ECONNREFUSED 127.0.0.1:3306"
+### Error: "connect ECONNREFUSED 127.0.0.1:3306"
 
 **MySQL no está corriendo**
 - Inicia MySQL local o Docker
 - Verifica credenciales en `.env`
 
-### ❌ Error: "Unexpected token < in JSON at position 0"
+###  Error: "Unexpected token < in JSON at position 0"
 
 Probablemente HTML en lugar de JSON
 - Verifica que el endpoint existe
 - Revisa URL (¿está bien escrita?)
 
-### ❌ Error: "CORS policy: No 'Access-Control-Allow-Origin'"
+### Error: "CORS policy: No 'Access-Control-Allow-Origin'"
 
 Backend CORS no está habilitado
 - Verificar que `app.use(cors())` está en app.js
 
-### ❌ Puerto 3000 ya está en uso
+###  Puerto 3000 ya está en uso
 
 ```bash
 # Windows - Ver proceso
@@ -617,14 +617,13 @@ PORT=3001
 
 ---
 
-## ✨ Verificación Exitosa
+##  Verificación Exitosa
 
 Si todos los tests pasan:
 
-✅ **Backend funcionando correctamente**
-✅ **Database sincronizada**
-✅ **Validadores funcionando**
-✅ **CRUD operativo**
-✅ **Frontend accesible**
+**Backend funcionando correctamente**
+**Database sincronizada**
+**Validadores funcionando**
+**CRUD operativo**
+**Frontend accesible**
 
-¡Tu proyecto está listo para desarrollo! 🚀
