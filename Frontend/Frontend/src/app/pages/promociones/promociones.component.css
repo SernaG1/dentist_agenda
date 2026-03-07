@@ -1,0 +1,55 @@
+.titulo {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+/* GRID EXACTO DE 3 COLUMNAS */
+.grid-promos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+/* TARJETA */
+.card-promo {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card-promo:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 22px rgba(0,0,0,0.15);
+}
+
+.card-promo img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.precio {
+  font-size: 20px;
+  font-weight: bold;
+  color: #16a34a;
+  margin: 10px 0;
+}
+
+/* RESPONSIVE TABLET */
+@media (max-width: 900px) {
+  .grid-promos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* RESPONSIVE CELULAR */
+@media (max-width: 500px) {
+  .grid-promos {
+    grid-template-columns: 1fr;
+  }
+}

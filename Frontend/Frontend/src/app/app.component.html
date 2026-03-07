@@ -27,6 +27,10 @@
 <nav class="menu" *ngIf="auth.estaLogueado()">
   <a routerLink="/agendar">Agendar cita</a>
   <a routerLink="/ver-citas">Ver citas</a>
+  <a *ngIf="auth.estaLogueado()" routerLink="/crear-paciente">
+  Crear paciente
+</a>
+
 </nav>
 
 <router-outlet></router-outlet>

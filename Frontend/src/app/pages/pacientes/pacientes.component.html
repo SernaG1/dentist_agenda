@@ -1,0 +1,66 @@
+<div class="container">
+
+  <h2>Pacientes Registrados</h2>
+
+  <table *ngIf="pacientes.length > 0">
+
+    <thead>
+      <tr>
+        <th>Foto</th>
+        <th>Nombre</th>
+        <th>Documento</th>
+        <th>Teléfono</th>
+        <th>Correo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let paciente of pacientes; let i = index">
+
+        <td>
+          <img
+          *ngIf="paciente.foto"
+          [src]="paciente.foto"
+          width="60">
+        </td>
+
+        <td>{{paciente.nombre}}</td>
+
+        <td>
+        {{paciente.tipoDocumento}}
+        {{paciente.numeroDocumento}}
+        </td>
+
+        <td>{{paciente.telefono}}</td>
+
+        <td>{{paciente.correo}}</td>
+
+        <td>
+
+          <button
+          class="btn-editar"
+          (click)="editarPaciente(i)">
+          Editar
+          </button>
+
+          <button
+          class="btn-eliminar"
+          (click)="eliminarPaciente(i)">
+          Eliminar
+          </button>
+
+        </td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+  <p *ngIf="pacientes.length === 0">
+  No hay pacientes registrados
+  </p>
+
+</div>

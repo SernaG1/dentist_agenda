@@ -1,0 +1,23 @@
+<div class="container fade-in">
+  <h2>Citas agendadas</h2>
+
+  <ul *ngIf="citas.length > 0; else sinCitas">
+    <li *ngFor="let cita of citas; let i = index">
+      <strong>{{ cita.nombre }}</strong><br>
+      {{ cita.fecha }} — {{ cita.hora }}<br>
+      {{ cita.motivo }}
+
+      <div style="margin-top: 10px;">
+        <button (click)="editar(cita, i)">Editar</button>
+        <button style="margin-left:10px; background:#dc3545;" (click)="eliminar(i)">
+          Eliminar
+        </button>
+      </div>
+    </li>
+  </ul>
+
+  <ng-template #sinCitas>
+    <p>No hay citas agendadas.</p>
+  </ng-template>
+</div>
+

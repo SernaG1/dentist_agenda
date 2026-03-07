@@ -1,0 +1,10 @@
+<h2>Ingreso Odontólogo</h2>
+
+<input type="text" placeholder="Usuario" [(ngModel)]="usuario">
+<input type="password" placeholder="Contraseña" [(ngModel)]="clave">
+
+<button (click)="ingresar()">Ingresar</button>
+
+<p class="error" *ngIf="error">{{ error }}</p>
+
+

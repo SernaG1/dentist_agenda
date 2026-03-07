@@ -105,6 +105,22 @@ app.listen(PORT, async () => {
   await createDatabaseIfNotExists();
   await syncDatabase();
   
+  // Inicializar WhatsApp si está habilitado
+  const ENABLE_WHATSAPP = process.env.ENABLE_WHATSAPP === 'true';
+  if (ENABLE_WHATSAPP) {
+    try {
+      const { getWhatsAppService } = require('./services/whatsappService');
+      const whatsapp = getWhatsAppService();
+      console.log('\n🤖 Inicializando Bot de WhatsApp...');
+      await whatsapp.initialize();
+    } catch (error) {
+      console.error('⚠️ Error inicializando WhatsApp:', error.message);
+      console.log('   Puede inicializarlo manualmente mediante: POST /api/whatsapp/conectar');
+    }
+  } else {
+    console.log('\n💡 WhatsApp está deshabilitado. Para habilitarlo, establece ENABLE_WHATSAPP=true en .env');
+  }
+  
   console.log('✓ Sistema listo para recibir solicitudes\n');
 });
 

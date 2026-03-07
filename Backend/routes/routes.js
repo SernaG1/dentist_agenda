@@ -6,6 +6,7 @@ const PacienteController = require('../controllers/PacienteController');
 const DentistaController = require('../controllers/DentistaController');
 const CitaController = require('../controllers/CitaController');
 const ServicioController = require('../controllers/ServicioController');
+const WhatsAppController = require('../controllers/WhatsAppController');
 
 // Importar validadores
 const { pacienteValidators, dentistaValidators, servicioValidators, citaValidators } = require('../middlewares/validators');
@@ -42,5 +43,13 @@ router.get('/citas/:id', validateIdParam, CitaController.getById);
 router.put('/citas/:id', validateIdParam, validateNotEmptyBody, citaValidators.update, CitaController.update);
 router.patch('/citas/:id/estado', validateIdParam, citaValidators.updateEstado, CitaController.updateEstado);
 router.delete('/citas/:id', validateIdParam, CitaController.delete);
+
+// ===== WHATSAPP =====
+router.post('/whatsapp/conectar', WhatsAppController.conectar);
+router.post('/whatsapp/desconectar', WhatsAppController.desconectar);
+router.get('/whatsapp/estado', WhatsAppController.obtenerEstado);
+router.post('/whatsapp/enviar', WhatsAppController.enviarMensaje);
+router.get('/whatsapp/chats', WhatsAppController.obtenerChats);
+router.get('/whatsapp/chats/:chatId', WhatsAppController.obtenerHistorial);
 
 module.exports = router;

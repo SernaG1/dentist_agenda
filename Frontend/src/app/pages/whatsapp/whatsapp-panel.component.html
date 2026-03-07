@@ -1,0 +1,128 @@
+<div class="whatsapp-panel">
+  <!-- Header -->
+  <div class="header">
+    <h1>💬 Panel de Mensajes WhatsApp</h1>
+    
+    <!-- Estado de conexión -->
+    <div class="estado-conexion" [class.conectado]="conectado">
+      <span class="indicador"></span>
+      {{ conectado ? '✅ Conectado' : '❌ Desconectado' }}
+    </div>
+
+    <!-- Botones de control -->
+    <div class="controles">
+      <button 
+        *ngIf="!conectado"
+        (click)="conectar()" 
+        [disabled]="cargando"
+        class="btn btn-primary">
+        {{ cargando ? '⏳ Conectando...' : '📱 Conectar WhatsApp' }}
+      </button>
+      <button 
+        *ngIf="conectado"
+        (click)="desconectar()"
+        class="btn btn-danger">
+        🔌 Desconectar
+      </button>
+    </div>
+  </div>
+
+  <!-- Mensajes de alerta -->
+  <div *ngIf="error" class="alerta alerta-error">
+    {{ error }}
+    <button (click)="error = ''" class="cerrar">✕</button>
+  </div>
+  <div *ngIf="exito" class="alerta alerta-exito">
+    {{ exito }}
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="contenedor-principal" *ngIf="conectado">
+    <!-- Lista de chats -->
+    <div class="lista-chats">
+      <h2>Chats ({{ chats.length }})</h2>
+      
+      <div class="chats">
+        <div 
+          *ngFor="let chat of chats"
+          (click)="seleccionarChat(chat)"
+          [class.activo]="chatSeleccionado?.id === chat.id"
+          class="chat-item">
+          
+          <div class="avatar">
+            {{ chat.nombre.charAt(0).toUpperCase() }}
+          </div>
+          
+          <div class="info-chat">
+            <h3>{{ chat.nombre }}</h3>
+            <p class="preview">{{ chat.ultimoMensaje }}</p>
+          </div>
+
+          <div *ngIf="chat.noLidos > 0" class="badge">
+            {{ chat.noLidos }}
+          </div>
+        </div>
+
+        <div *ngIf="chats.length === 0" class="vacio">
+          No hay chats aún
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel de chat -->
+    <div class="panel-chat">
+      <!-- Header del chat -->
+      <div class="chat-header" *ngIf="chatSeleccionado">
+        <h2>{{ chatSeleccionado.nombre }}</h2>
+        <p class="numero">{{ chatSeleccionado.id.replace('@c.us', '') }}</p>
+      </div>
+
+      <!-- Área de mensajes -->
+      <div class="area-mensajes" *ngIf="chatSeleccionado">
+        <div *ngFor="let msg of mensajes" 
+             [class.propio]="msg.esDelBot"
+             class="mensaje">
+          <div class="contenido-mensaje">
+            <p>{{ msg.texto }}</p>
+            <small>{{ formatearFecha(msg.timestamp) }}</small>
+          </div>
+        </div>
+
+        <div *ngIf="mensajes.length === 0" class="vacio-chat">
+          No hay mensajes
+        </div>
+      </div>
+
+      <!-- Input de nuevo mensaje -->
+      <div class="input-nuevo" *ngIf="chatSeleccionado">
+        <textarea 
+          [(ngModel)]="nuevoMensaje"
+          placeholder="Escribe tu mensaje..."
+          (keyup.enter)="enviarMensaje()">
+        </textarea>
+        <button 
+          (click)="enviarMensaje()"
+          [disabled]="!nuevoMensaje.trim()"
+          class="btn btn-enviar">
+          📤 Enviar
+        </button>
+      </div>
+
+      <!-- Estado inicial -->
+      <div *ngIf="!chatSeleccionado" class="vacio-panel">
+        <p>👈 Selecciona un chat para comenzar</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Estado desconectado -->
+  <div *ngIf="!conectado" class="desconectado">
+    <div class="mensaje-desconexion">
+      <h2>📱 WhatsApp desconectado</h2>
+      <p>Haz clic en "Conectar WhatsApp" para iniciar</p>
+      <p class="instrucciones">
+        Se mostrará un código QR que debes escanear con tu teléfono
+      </p>
+    </div>
+  </div>
+</div>

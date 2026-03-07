@@ -13,30 +13,32 @@
         name="nombre"
         [(ngModel)]="paciente.nombre"
         required
-        maxlength="100"
         placeholder="Ingrese el nombre del paciente"
       />
 
-      <!-- APELLIDO -->
-      <label>Apellido</label>
-      <input
-        type="text"
-        name="apellido"
-        [(ngModel)]="paciente.apellido"
+      <!-- TIPO DOCUMENTO -->
+      <label>Tipo de documento</label>
+      <select
+        name="tipoDocumento"
+        [(ngModel)]="paciente.tipoDocumento"
         required
-        maxlength="100"
-        placeholder="Ingrese el apellido del paciente"
-      />
+      >
+        <option value="">Seleccione</option>
+        <option value="CC">Cédula de ciudadanía</option>.
+        <option value="TI">Tarjeta de identidad</option>
+        <option value="CE">Cédula de extranjería</option>
+        <option value="PAS">Pasaporte</option>
+      </select>
 
-      <!-- DIRECCIÓN -->
-      <label>Dirección</label>
-      <input
-        type="text"
-        name="direccion"
-        [(ngModel)]="paciente.direccion"
-        maxlength="255"
-        placeholder="Dirección del paciente"
-      />
+      <div class="form-group">
+  <label>Número de Documento</label>
+  <input 
+    type="text" 
+    class="form-control"
+    [(ngModel)]="paciente.numeroDocumento"
+    name="numeroDocumento"
+    required>
+</div>
 
 
       <!-- TELEFONO -->
@@ -45,7 +47,7 @@
         type="tel"
         name="telefono"
         [(ngModel)]="paciente.telefono"
-        maxlength="20"
+        required
         placeholder="Número de contacto"
       />
 
@@ -53,9 +55,9 @@
       <label>Correo electrónico</label>
       <input
         type="email"
-        name="email"
-        [(ngModel)]="paciente.email"
-        maxlength="150"
+        name="correo"
+        [(ngModel)]="paciente.correo"
+        required
         placeholder="correo@ejemplo.com"
       />
 
@@ -81,7 +83,29 @@
     </form>
   </div>
 
+  <!-- ================= CÁMARA DERECHA ================= -->
+  <div class="camara-box">
 
+    <h3>Fotografía del Paciente</h3>
+
+    <!-- COMPONENTE WEBCAM -->
+    <webcam
+      [trigger]="triggerObservable"
+      (imageCapture)="handleImage($event)">
+    </webcam>
+
+    <!-- BOTÓN TOMAR FOTO -->
+    <button class="btn-foto" type="button" (click)="triggerSnapshot()">
+      📸 Tomar Foto
+    </button>
+
+    <!-- VISTA PREVIA -->
+    <div class="preview" *ngIf="imagen">
+      <p>Vista previa:</p>
+      <img [src]="imagen.imageAsDataUrl" alt="Foto del paciente" />
+    </div>
+
+  </div>
 
 </div>
 

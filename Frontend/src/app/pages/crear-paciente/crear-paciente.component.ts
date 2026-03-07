@@ -1,68 +1,128 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { PacientesService } from '../../services/pacientes.service';
+import { WebcamModule, WebcamImage } from 'ngx-webcam';
+import { Subject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-crear-paciente',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, WebcamModule],
   templateUrl: './crear-paciente.component.html',
   styleUrls: ['./crear-paciente.component.css']
 })
-export class CrearPacienteComponent {
+export class CrearPacienteComponent implements OnInit {
 
-  // ================= PACIENTE =================
-paciente = {
-  nombre: '',
-  apellido: '',
-  email: '',
-  telefono: '',
-  direccion: '',
-  observaciones: ''
-};
+  // ================= FOTO =================
+  private trigger: Subject<void> = new Subject<void>();
+  imagen: WebcamImage | null = null;
 
-
-  // ================= GUARDAR =================
-  constructor(private pacientesService: PacientesService) {}
-
-  guardarPaciente(): void {
-    const nuevoPaciente = {
-      ...this.paciente
-    };
-
-    this.pacientesService.crear(nuevoPaciente).subscribe({
-      next: (res) => {
-        console.log('Paciente creado:', res);
-        alert('Paciente guardado correctamente');
-        this.resetFormulario();
-      },
-      error: (err) => {
-        console.error('Error al crear paciente', err);
-        // Mostrar mensajes de validación del backend si existen
-        if (err?.error?.errores && Array.isArray(err.error.errores)) {
-          const msgs = err.error.errores.map((e: any) => e.msg || e.message || JSON.stringify(e));
-          alert('Errores: \n' + msgs.join('\n'));
-        } else if (err?.error?.message) {
-          alert('Error: ' + err.error.message);
-        } else {
-          alert('Error al guardar paciente. Revisa la consola.');
-        }
-      }
-    });
+  get triggerObservable(): Observable<void> {
+    return this.trigger.asObservable();
   }
 
-  private resetFormulario() {
+  triggerSnapshot(): void {
+    this.trigger.next();
+  }
+
+  handleImage(webcamImage: WebcamImage): void {
+    this.imagen = webcamImage;
+  }
+
+  // ================= PACIENTE =================
+  paciente = {
+    nombre: '',
+    tipoDocumento: '',
+    numeroDocumento: '',
+    telefono: '',
+    correo: '',
+    observaciones: ''
+  };
+
+  // índice del paciente cuando se edita
+  editIndex: number | null = null;
+
+  // ================= CARGAR PACIENTE PARA EDITAR =================
+  ngOnInit(): void {
+
+    const index = localStorage.getItem('pacienteEditar');
+
+    if(index !== null){
+
+      this.editIndex = Number(index);
+
+      const pacientes = JSON.parse(localStorage.getItem('pacientes') || '[]');
+
+      const paciente = pacientes[this.editIndex];
+
+      if(paciente){
+
+        this.paciente = {
+          nombre: paciente.nombre,
+          tipoDocumento: paciente.tipoDocumento,
+          numeroDocumento: paciente.numeroDocumento,
+          telefono: paciente.telefono,
+          correo: paciente.correo,
+          observaciones: paciente.observaciones
+        };
+
+        if(paciente.foto){
+          this.imagen = {
+            imageAsDataUrl: paciente.foto
+          } as WebcamImage;
+        }
+
+      }
+
+    }
+
+  }
+
+  // ================= GUARDAR =================
+  guardarPaciente(): void {
+
+    const pacientes = JSON.parse(localStorage.getItem('pacientes') || '[]');
+
+    const nuevoPaciente = {
+      ...this.paciente,
+      foto: this.imagen?.imageAsDataUrl || null
+    };
+
+    if(this.editIndex !== null){
+
+      // EDITAR
+      pacientes[this.editIndex] = nuevoPaciente;
+
+      alert('Paciente actualizado correctamente');
+
+      localStorage.removeItem('pacienteEditar');
+
+    }else{
+
+      // CREAR
+      pacientes.push(nuevoPaciente);
+
+      alert('Paciente guardado correctamente');
+
+    }
+
+    localStorage.setItem('pacientes', JSON.stringify(pacientes));
+
+    // Resetear formulario
     this.paciente = {
       nombre: '',
-      apellido: '',
-      email: '',
+      tipoDocumento: '',
+      numeroDocumento: '',
       telefono: '',
-      direccion: '',
+      correo: '',
       observaciones: ''
     };
 
+    this.imagen = null;
+    this.editIndex = null;
+
   }
+
 }
 
 

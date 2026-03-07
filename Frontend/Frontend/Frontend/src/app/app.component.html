@@ -1,0 +1,52 @@
+<header class="header">
+
+  <h1 class="logo">Consultorio Odontológico</h1>
+
+  <!-- MENÚ PÚBLICO -->
+  <nav class="menu-publico">
+    <a routerLink="/">Inicio</a>
+    <a routerLink="/promociones">Promociones</a>
+    <a routerLink="/quienes-somos">Quiénes somos</a>
+  </nav>
+
+  <!-- BOTÓN LOGIN / LOGOUT -->
+  <div class="auth">
+    <button *ngIf="!auth.estaLogueado()" (click)="abrirLogin()">
+      Login Odontólogo
+    </button>
+
+    <button *ngIf="auth.estaLogueado()" (click)="logout()">
+      Cerrar sesión
+    </button>
+  </div>
+
+</header>
+
+
+<!-- MENÚ SOLO SI ESTÁ LOGUEADO -->
+<nav class="menu" *ngIf="auth.estaLogueado()">
+  <a routerLink="/agendar">Agendar cita</a>
+  <a routerLink="/ver-citas">Ver citas</a>
+</nav>
+
+<router-outlet></router-outlet>
+
+<!-- MODAL LOGIN -->
+<div class="modal" *ngIf="mostrarLogin">
+  <div class="modal-contenido">
+    <app-login (cerrar)="cerrarLogin()"></app-login>
+  </div>
+</div>
+
+<!-- BOTÓN FLOTANTE WHATSAPP -->
+<a
+  class="whatsapp-float"
+  href="https://wa.me/573148708677"
+  target="_blank"
+  aria-label="WhatsApp"
+>
+  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+</a>
+
+
+

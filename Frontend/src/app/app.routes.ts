@@ -9,6 +9,8 @@ import { BlanqueamientoComponent } from './pages/servicios/blanqueamiento/blanqu
 import { OrtodonciaComponent } from './pages/servicios/ortodoncia/ortodoncia.component';
 import { PromocionesComponent } from './pages/promociones/promociones.component';
 import { QuienesSomosComponent } from './pages/quienes-somos/quienes-somos.component';
+import { PacientesComponent } from './pages/pacientes/pacientes.component';
+import { WhatsappPanelComponent } from './pages/whatsapp/whatsapp-panel.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,6 +18,8 @@ export const routes: Routes = [
   { path: 'quienes-somos', component: QuienesSomosComponent },
   { path: 'agendar', component: AgendarCitaComponent },
   { path: 'ver-citas', component: VerCitasComponent },
+  { path: 'pacientes', component: PacientesComponent },
+  { path: 'whatsapp', component: WhatsappPanelComponent },
 
   {
     path: 'crear-paciente',

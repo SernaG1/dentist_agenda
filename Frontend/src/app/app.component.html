@@ -25,15 +25,19 @@
 
 <!-- MENÚ SOLO SI ESTÁ LOGUEADO -->
 <nav class="menu" *ngIf="auth.estaLogueado()">
+
   <a routerLink="/agendar">Agendar cita</a>
+
   <a routerLink="/ver-citas">Ver citas</a>
-  <a *ngIf="auth.estaLogueado()" routerLink="/crear-paciente">
-  Crear paciente
-</a>
+
+  <a routerLink="/crear-paciente">Crear paciente</a>
+
+  <a routerLink="/pacientes">Pacientes</a>
 
 </nav>
 
 <router-outlet></router-outlet>
+
 
 <!-- MODAL LOGIN -->
 <div class="modal" *ngIf="mostrarLogin">
@@ -41,6 +45,7 @@
     <app-login (cerrar)="cerrarLogin()"></app-login>
   </div>
 </div>
+
 
 <!-- BOTÓN FLOTANTE WHATSAPP -->
 <a

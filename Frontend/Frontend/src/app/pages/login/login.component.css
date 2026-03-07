@@ -1,0 +1,47 @@
+h2 {
+text-align: center;
+margin-bottom: 15px;
+}
+
+
+form {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+
+input {
+padding: 8px;
+border-radius: 6px;
+border: 1px solid #ccc;
+}
+
+
+button {
+padding: 8px;
+border: none;
+border-radius: 6px;
+cursor: pointer;
+background: #1976d2;
+color: white;
+}
+
+
+button:hover {
+background: #125ea8;
+}
+
+
+.botones {
+display: flex;
+gap: 10px;
+justify-content: space-between;
+}
+
+
+.error {
+color: red;
+font-size: 13px;
+text-align: center;
+}
